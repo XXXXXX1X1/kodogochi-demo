@@ -1,0 +1,13 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Проверка status.txt
+        run: |
+          echo "status.txt: $(cat status.txt)"
+          test "$(tr -d '[:space:]' < status.txt)" = ok
